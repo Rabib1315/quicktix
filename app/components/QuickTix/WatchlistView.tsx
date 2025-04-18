@@ -1,59 +1,55 @@
+'use client';
+
 import React from 'react';
 import { Heart, Star, X } from 'lucide-react';
-import { WatchlistViewProps } from './types';
+import Image from 'next/image';
+import { WatchlistViewProps, Movie } from './types';
 
-export const WatchlistView: React.FC<WatchlistViewProps> = ({
-  movies,
-  watchlist,
-  toggleWatchlist,
-  setSelectedMovie,
-  setActiveScreen
-}) => {
+const SAMPLE_WATCHLIST: Movie[] = [
+  {
+    id: '1',
+    title: 'Inception',
+    posterUrl: '/movies/inception.jpg',
+    rating: 4.8,
+    runtime: '2h 28m',
+    genre: ['Action', 'Sci-Fi']
+  },
+  // Add more sample movies
+];
+
+export function WatchlistView({ onSelectMovie }: WatchlistViewProps) {
   return (
     <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">My Watchlist</h1>
-      
-      {watchlist.length === 0 ? (
-        <div className="text-center py-8">
-          <Heart size={48} className="mx-auto mb-4 text-gray-300" />
-          <p className="text-gray-500 mb-2">Your watchlist is empty</p>
-          <p className="text-gray-400 text-sm mb-4">Add movies you want to see later</p>
-          <button 
-            className="bg-teal-500 text-white rounded-lg px-4 py-2"
-            onClick={() => {
-              setActiveScreen('home');
-            }}
-          >
-            Browse Movies
-          </button>
+      <h1 className="text-2xl font-bold mb-4">Your Watchlist</h1>
+      {SAMPLE_WATCHLIST.length === 0 ? (
+        <div className="text-center text-gray-500 py-8">
+          <p>Your watchlist is empty</p>
+          <p className="text-sm mt-2">Add movies you&apos;d like to watch later</p>
         </div>
       ) : (
-        <div className="space-y-4">
-          {movies.filter(movie => watchlist.includes(movie.id)).map((movie) => (
-            <div key={movie.id} className="flex bg-white rounded-lg shadow overflow-hidden">
-              <img src={movie.image} alt={movie.title} className="w-24 h-auto object-cover" />
-              <div className="p-3 flex-1">
-                <div className="flex justify-between">
-                  <h3 className="font-bold">{movie.title}</h3>
-                  <button onClick={() => toggleWatchlist(movie.id)}>
-                    <X size={20} className="text-gray-400" />
-                  </button>
+        <div className="grid grid-cols-2 gap-4">
+          {SAMPLE_WATCHLIST.map((movie) => (
+            <div
+              key={movie.id}
+              className="bg-white rounded-lg overflow-hidden shadow"
+              onClick={() => onSelectMovie(movie)}
+            >
+              <div className="relative w-full h-48">
+                <Image
+                  src={movie.posterUrl}
+                  alt={movie.title}
+                  className="object-cover"
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="font-semibold">{movie.title}</h3>
+                <div className="text-sm text-gray-600">
+                  <span>⭐ {movie.rating}</span>
+                  <span className="mx-2">•</span>
+                  <span>{movie.runtime}</span>
                 </div>
-                <div className="flex items-center text-sm mt-1 mb-2">
-                  <Star size={14} className="text-yellow-400 fill-current" />
-                  <span className="ml-1 mr-3">{movie.rating}</span>
-                  <span>{movie.duration}</span>
-                </div>
-                
-                <button 
-                  className="text-teal-500 text-sm font-medium"
-                  onClick={() => {
-                    setSelectedMovie(movie);
-                    setActiveScreen('movie');
-                  }}
-                >
-                  Find Showtimes
-                </button>
               </div>
             </div>
           ))}
@@ -61,4 +57,4 @@ export const WatchlistView: React.FC<WatchlistViewProps> = ({
       )}
     </div>
   );
-}; 
+} 

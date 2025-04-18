@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { BrowseViewProps, Movie } from './types';
 
 const SAMPLE_MOVIES: Movie[] = [
@@ -52,11 +53,16 @@ export function BrowseView({ onSelectMovie }: BrowseViewProps) {
             className="bg-white rounded-lg overflow-hidden shadow"
             onClick={() => onSelectMovie(movie)}
           >
-            <img
-              src={movie.posterUrl}
-              alt={movie.title}
-              className="w-full h-48 object-cover"
-            />
+            <div className="relative w-full h-48">
+              <Image
+                src={movie.posterUrl}
+                alt={movie.title}
+                className="object-cover"
+                fill
+                sizes="(max-width: 768px) 50vw, 33vw"
+                priority
+              />
+            </div>
             <div className="p-4">
               <h3 className="font-semibold">{movie.title}</h3>
               <div className="text-sm text-gray-600">
