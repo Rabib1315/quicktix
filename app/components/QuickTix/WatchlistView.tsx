@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-import { Heart, Star, X } from 'lucide-react';
 import Image from 'next/image';
 import { WatchlistViewProps, Movie } from './types';
 

@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-import { Map, Star, Bookmark, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { TheaterViewProps } from './types';
 
