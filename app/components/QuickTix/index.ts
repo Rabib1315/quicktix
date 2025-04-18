@@ -1,0 +1,12 @@
+export { default as QuickTixPrototype } from './QuickTixPrototype';
+export * from './types';
+export * from './Header';
+export * from './TabBar';
+export * from './SearchView';
+export * from './BrowseView';
+export * from './MapView';
+export * from './MovieView';
+export * from './TheaterView';
+export * from './BookingView';
+export * from './WatchlistView';
+export * from './BottomNav'; 
