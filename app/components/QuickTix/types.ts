@@ -1,90 +1,60 @@
 export interface Movie {
-  id: number;
+  id: string;
   title: string;
+  posterUrl: string;
   rating: number;
-  duration: string;
-  genres: string[];
-  image: string;
-  description: string;
-  showTimes: string[];
+  runtime: string;
+  genre: string[];
 }
 
 export interface Theater {
-  id: number;
+  id: string;
   name: string;
-  distance: string;
-  moviesShowing: number;
-  address: string;
-  amenities: string[];
-  movies: number[];
+  location: string;
+  rating: number;
 }
 
 export interface HeaderProps {
-  activeScreen: string;
-  setActiveScreen: (screen: string) => void;
+  title?: string;
 }
 
 export interface TabBarProps {
   activeTab: string;
-  setActiveTab: (tab: string) => void;
+  onTabChange: (tab: string) => void;
 }
 
 export interface SearchViewProps {
-  popularSearches: string[];
+  onSelectMovie: (movie: Movie) => void;
 }
 
 export interface BrowseViewProps {
-  genres: string[];
-  movies: Movie[];
-  setSelectedMovie: (movie: Movie) => void;
-  setActiveScreen: (screen: string) => void;
-  watchlist: number[];
-  toggleWatchlist: (movieId: number) => void;
+  onSelectMovie: (movie: Movie) => void;
 }
 
 export interface MapViewProps {
-  theaters: Theater[];
-  setSelectedTheater: (theater: Theater) => void;
-  setActiveScreen: (screen: string) => void;
-  bookmarkedTheaters: number[];
-  toggleBookmarkTheater: (theaterId: number) => void;
+  onSelectTheater: (theater: Theater) => void;
 }
 
 export interface MovieViewProps {
   movie: Movie;
-  theaters: Theater[];
-  watchlist: number[];
-  toggleWatchlist: (movieId: number) => void;
-  setActiveScreen: (screen: string) => void;
-  bookmarkedTheaters: number[];
-  toggleBookmarkTheater: (theaterId: number) => void;
+  onBack: () => void;
 }
 
 export interface TheaterViewProps {
   theater: Theater;
-  movies: Movie[];
-  setSelectedMovie: (movie: Movie) => void;
-  setActiveScreen: (screen: string) => void;
-  bookmarkedTheaters: number[];
-  toggleBookmarkTheater: (theaterId: number) => void;
+  onBack: () => void;
 }
 
 export interface BookingViewProps {
   movie: Movie;
+  theater: Theater;
 }
 
 export interface WatchlistViewProps {
-  movies: Movie[];
-  watchlist: number[];
-  toggleWatchlist: (movieId: number) => void;
-  setSelectedMovie: (movie: Movie) => void;
-  setActiveScreen: (screen: string) => void;
+  onSelectMovie: (movie: Movie) => void;
 }
 
 export interface BottomNavProps {
-  activeScreen: string;
   activeTab: string;
-  setActiveScreen: (screen: string) => void;
-  setActiveTab: (tab: string) => void;
-  watchlist: number[];
+  onTabChange: (tab: string) => void;
 }
