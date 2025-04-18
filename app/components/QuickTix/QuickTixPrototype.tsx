@@ -8,7 +8,6 @@ import { BrowseView } from './BrowseView';
 import { MapView } from './MapView';
 import { MovieView } from './MovieView';
 import { TheaterView } from './TheaterView';
-import { BookingView } from './BookingView';
 import { WatchlistView } from './WatchlistView';
 import { BottomNav } from './BottomNav';
 import type { Movie, Theater } from './types';
