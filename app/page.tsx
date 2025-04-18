@@ -1,9 +1,9 @@
-import ClientWrapper from './components/ClientWrapper';
+import { QuickTixPrototype } from './components/QuickTix'
 
 export default function Home() {
   return (
     <main>
-      <ClientWrapper />
+      <QuickTixPrototype />
     </main>
   );
 }
